@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>Modern Chat App</title>
 
   <style>
@@ -11,44 +15,42 @@
       margin:0;
       padding:0;
       box-sizing:border-box;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family:Arial, Helvetica, sans-serif;
     }
 
     body{
+
       height:100vh;
+
+      overflow:hidden;
+
       background:
       linear-gradient(135deg,#0f172a,#1e293b);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:15px;
-      overflow:hidden;
+
       color:white;
     }
 
     .chat-container{
+
       width:100%;
-      max-width:1200px;
-      height:95vh;
+      height:100vh;
+
       display:flex;
+
       overflow:hidden;
 
-      border-radius:25px;
+      background:
+      rgba(255,255,255,0.04);
 
-      background:rgba(255,255,255,0.05);
-
-      backdrop-filter:blur(15px);
-
-      border:1px solid rgba(255,255,255,0.08);
-
-      box-shadow:
-      0 10px 40px rgba(0,0,0,0.4);
+      backdrop-filter:blur(10px);
     }
 
     /* ================= SIDEBAR ================= */
 
     .sidebar{
+
       width:280px;
+
       padding:25px;
 
       background:
@@ -61,20 +63,28 @@
     }
 
     .sidebar h3{
+
       font-size:24px;
+
       margin-bottom:20px;
+
       color:#38bdf8;
     }
 
     #users{
+
       list-style:none;
+
       display:flex;
       flex-direction:column;
+
       gap:12px;
     }
 
     #users li{
+
       padding:14px;
+
       border-radius:14px;
 
       background:
@@ -84,6 +94,7 @@
     }
 
     #users li:hover{
+
       transform:translateX(5px);
 
       background:
@@ -93,18 +104,22 @@
     /* ================= CHAT SECTION ================= */
 
     .chat-section{
+
       flex:1;
 
       display:flex;
+
       flex-direction:column;
 
       min-height:0;
     }
 
     .chat-header{
+
       padding:22px;
 
       font-size:24px;
+
       font-weight:bold;
 
       border-bottom:
@@ -112,13 +127,12 @@
 
       background:
       rgba(255,255,255,0.03);
-
-      color:#f8fafc;
     }
 
     /* ================= CHAT BOX ================= */
 
     #chat-box{
+
       flex:1;
 
       min-height:0;
@@ -128,7 +142,9 @@
       padding:20px;
 
       display:flex;
+
       flex-direction:column;
+
       gap:14px;
     }
 
@@ -168,18 +184,18 @@
     #message-form{
 
       display:flex;
+
       gap:12px;
 
-      padding:20px;
+      padding:18px;
 
       border-top:
       1px solid rgba(255,255,255,0.08);
 
       background:
-      rgba(255,255,255,0.03);
+      rgba(15,23,42,0.95);
 
-      position:sticky;
-      bottom:0;
+      backdrop-filter:blur(10px);
     }
 
     #message-input{
@@ -187,9 +203,10 @@
       flex:1;
 
       border:none;
+
       outline:none;
 
-      padding:16px;
+      padding:15px;
 
       border-radius:16px;
 
@@ -208,13 +225,15 @@
     button{
 
       border:none;
+
       cursor:pointer;
 
-      padding:15px 24px;
+      padding:15px 22px;
 
       border-radius:16px;
 
       font-size:16px;
+
       font-weight:bold;
 
       color:white;
@@ -226,7 +245,9 @@
     }
 
     button:hover{
+
       transform:translateY(-2px);
+
       opacity:0.9;
     }
 
@@ -237,7 +258,9 @@
     }
 
     #chat-box::-webkit-scrollbar-thumb{
+
       background:#475569;
+
       border-radius:10px;
     }
 
@@ -246,13 +269,17 @@
     @media(max-width:768px){
 
       .chat-container{
+
         flex-direction:column;
-        height:96vh;
       }
 
       .sidebar{
 
         width:100%;
+
+        max-height:120px;
+
+        overflow-y:auto;
 
         border-right:none;
 
@@ -263,7 +290,10 @@
       }
 
       .sidebar h3{
-        margin-bottom:15px;
+
+        font-size:20px;
+
+        margin-bottom:14px;
       }
 
       #users{
@@ -271,19 +301,30 @@
         flex-direction:row;
 
         overflow-x:auto;
+
+        gap:10px;
       }
 
       #users li{
-        min-width:120px;
+
+        min-width:100px;
+
         text-align:center;
       }
 
       .chat-header{
+
         font-size:20px;
+
         padding:18px;
       }
 
       #chat-box{
+
+        flex:1;
+
+        min-height:0;
+
         padding:15px;
       }
 
@@ -292,7 +333,12 @@
       }
 
       #message-form{
-        padding:15px;
+
+        padding:12px;
+
+        position:sticky;
+
+        bottom:0;
       }
 
       #message-input{
@@ -312,7 +358,7 @@
 
   <div class="chat-container">
 
-    <!-- ============== SIDEBAR ============== -->
+    <!-- ================= SIDEBAR ================= -->
 
     <div class="sidebar">
 
@@ -322,7 +368,7 @@
 
     </div>
 
-    <!-- ============== CHAT SECTION ============== -->
+    <!-- ================= CHAT SECTION ================= -->
 
     <div class="chat-section">
 
@@ -332,14 +378,14 @@
 
       <div id="chat-box"></div>
 
-      <!-- ============== FORM ============== -->
+      <!-- ================= FORM ================= -->
 
       <form id="message-form">
 
         <input
           id="message-input"
-          placeholder="Enter your message..."
           type="text"
+          placeholder="Enter your message..."
           required
         >
 
@@ -353,7 +399,7 @@
 
   </div>
 
-  <!-- ================= SOCKET ================= -->
+  <!-- ================= SOCKET.IO ================= -->
 
   <script src="/socket.io/socket.io.js"></script>
 
@@ -361,7 +407,8 @@
 
     const socket = io();
 
-    const chat = document.getElementById('chat-box');
+    const chat =
+    document.getElementById('chat-box');
 
     const messageForm =
     document.getElementById('message-form');
