@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat app</title>
+</head>
+<body>
+      <div id = "user-list">
+        <h3 id ="online users">Online Users</h3>
+        <ul id = "users"></ul>
+      </div>
+      <div id = "chat-box"></div>
+      <form id = "message-form">
+            <input 
+            id = "message-input"
+            placeholder="Enter your text"
+            type="text"
+            required>
+            
+            <button type="submit">Send</button>
+        </form>
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+        const socket = io();
+
+        const chat = document.getElementById('chat-box');
+        const messageForm = document.getElementById('message-form');
+        const userList = document.getElementById('users');
+        const messageInput = document.getElementById('message-input');
+       
+        const username = prompt('Enter your username');
+        socket.emit('join', username);
+
+        socket.on('userJoined', (users)=>{
+              addMessage(`${users} has joined the chat`);
+        })
+   
+        socket.on('userLeft', (user)=>{
+            addMessage(`${user} has left the chat`);
+        })
+
+        messageForm.addEventListener('submit', (event)=>{
+            event.preventDefault();
+            const messageInfo = messageInput.value.trim();
+            if(messageInfo){
+                  socket.emit('userChat', {
+                        username,
+                        text : messageInfo
+                  })
+            }
+            messageInput.value = '';
+        })
+
+       function addMessage(input){
+        const message = document.createElement('div');
+        message.textContent = input;
+        chat.appendChild(message);
+        chat.scrollTop = chat.scrollHeight;
+       }
+       socket.on("userList",(users)=>{
+            userList.innerHTML = users.map((user)=> `<li>${user}</li>`).join("")
+       })
+       socket.on('userChat', (message)=>{
+            addMessage(`${message.username}: ${message.text}`);
+       })
+
+      </script>
+</body>
+</html>
