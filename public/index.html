@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chat App</title>
+  <title>Modern Chat App</title>
 
   <style>
+
     *{
       margin:0;
       padding:0;
@@ -15,38 +16,52 @@
 
     body{
       height:100vh;
+      background:
+      linear-gradient(135deg,#0f172a,#1e293b);
       display:flex;
       justify-content:center;
       align-items:center;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
+      padding:15px;
+      overflow:hidden;
       color:white;
-      padding:20px;
     }
 
     .chat-container{
       width:100%;
-      max-width:1100px;
-      height:90vh;
+      max-width:1200px;
+      height:95vh;
       display:flex;
       overflow:hidden;
-      border-radius:20px;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border:1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+
+      border-radius:25px;
+
+      background:rgba(255,255,255,0.05);
+
+      backdrop-filter:blur(15px);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      box-shadow:
+      0 10px 40px rgba(0,0,0,0.4);
     }
 
-    /* Sidebar */
+    /* ================= SIDEBAR ================= */
 
     .sidebar{
       width:280px;
-      background: rgba(255,255,255,0.04);
-      border-right:1px solid rgba(255,255,255,0.08);
       padding:25px;
+
+      background:
+      rgba(255,255,255,0.03);
+
+      border-right:
+      1px solid rgba(255,255,255,0.08);
+
+      overflow-y:auto;
     }
 
     .sidebar h3{
-      font-size:22px;
+      font-size:24px;
       margin-bottom:20px;
       color:#38bdf8;
     }
@@ -59,83 +74,131 @@
     }
 
     #users li{
-      padding:12px 15px;
-      border-radius:12px;
-      background: rgba(255,255,255,0.06);
+      padding:14px;
+      border-radius:14px;
+
+      background:
+      rgba(255,255,255,0.06);
+
       transition:0.3s;
     }
 
     #users li:hover{
-      background: rgba(255,255,255,0.12);
-      transform: translateX(5px);
+      transform:translateX(5px);
+
+      background:
+      rgba(255,255,255,0.12);
     }
 
-    /* Chat Section */
+    /* ================= CHAT SECTION ================= */
 
     .chat-section{
       flex:1;
+
       display:flex;
       flex-direction:column;
+
+      min-height:0;
     }
 
     .chat-header{
-      padding:20px;
-      border-bottom:1px solid rgba(255,255,255,0.08);
+      padding:22px;
+
       font-size:24px;
       font-weight:bold;
+
+      border-bottom:
+      1px solid rgba(255,255,255,0.08);
+
+      background:
+      rgba(255,255,255,0.03);
+
       color:#f8fafc;
-      background: rgba(255,255,255,0.03);
     }
+
+    /* ================= CHAT BOX ================= */
 
     #chat-box{
       flex:1;
-      padding:20px;
+
+      min-height:0;
+
       overflow-y:auto;
+
+      padding:20px;
+
       display:flex;
       flex-direction:column;
-      gap:12px;
+      gap:14px;
     }
 
     #chat-box div{
+
       max-width:75%;
-      padding:14px 16px;
-      border-radius:16px;
-      background: rgba(255,255,255,0.08);
-      line-height:1.4;
+
+      padding:15px 18px;
+
+      border-radius:18px;
+
+      line-height:1.5;
+
       word-wrap:break-word;
-      animation: fadeIn 0.3s ease;
+
+      background:
+      rgba(255,255,255,0.08);
+
+      animation:fadeIn 0.25s ease;
     }
 
     @keyframes fadeIn{
+
       from{
         opacity:0;
         transform:translateY(10px);
       }
+
       to{
         opacity:1;
         transform:translateY(0);
       }
     }
 
-    /* Form */
+    /* ================= FORM ================= */
 
     #message-form{
+
       display:flex;
       gap:12px;
+
       padding:20px;
-      border-top:1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
+
+      border-top:
+      1px solid rgba(255,255,255,0.08);
+
+      background:
+      rgba(255,255,255,0.03);
+
+      position:sticky;
+      bottom:0;
     }
 
     #message-input{
+
       flex:1;
-      padding:15px;
+
       border:none;
       outline:none;
-      border-radius:14px;
-      background: rgba(255,255,255,0.08);
-      color:white;
+
+      padding:16px;
+
+      border-radius:16px;
+
       font-size:16px;
+
+      color:white;
+
+      background:
+      rgba(255,255,255,0.08);
     }
 
     #message-input::placeholder{
@@ -143,14 +206,22 @@
     }
 
     button{
-      padding:14px 24px;
+
       border:none;
-      border-radius:14px;
       cursor:pointer;
+
+      padding:15px 24px;
+
+      border-radius:16px;
+
       font-size:16px;
       font-weight:bold;
-      background: linear-gradient(135deg, #38bdf8, #6366f1);
+
       color:white;
+
+      background:
+      linear-gradient(135deg,#38bdf8,#6366f1);
+
       transition:0.3s;
     }
 
@@ -159,7 +230,7 @@
       opacity:0.9;
     }
 
-    /* Scrollbar */
+    /* ================= SCROLLBAR ================= */
 
     #chat-box::-webkit-scrollbar{
       width:8px;
@@ -170,44 +241,88 @@
       border-radius:10px;
     }
 
+    /* ================= MOBILE ================= */
+
     @media(max-width:768px){
 
       .chat-container{
         flex-direction:column;
-        height:95vh;
+        height:96vh;
       }
 
       .sidebar{
+
         width:100%;
+
         border-right:none;
-        border-bottom:1px solid rgba(255,255,255,0.08);
+
+        border-bottom:
+        1px solid rgba(255,255,255,0.08);
+
+        padding:18px;
+      }
+
+      .sidebar h3{
+        margin-bottom:15px;
       }
 
       #users{
+
         flex-direction:row;
+
         overflow-x:auto;
       }
 
       #users li{
         min-width:120px;
+        text-align:center;
+      }
+
+      .chat-header{
+        font-size:20px;
+        padding:18px;
+      }
+
+      #chat-box{
+        padding:15px;
+      }
+
+      #chat-box div{
+        max-width:90%;
+      }
+
+      #message-form{
+        padding:15px;
+      }
+
+      #message-input{
+        padding:14px;
+      }
+
+      button{
+        padding:14px 18px;
       }
     }
 
   </style>
+
 </head>
 
 <body>
 
   <div class="chat-container">
 
-    <!-- Sidebar -->
+    <!-- ============== SIDEBAR ============== -->
 
     <div class="sidebar">
+
       <h3>Online Users</h3>
+
       <ul id="users"></ul>
+
     </div>
 
-    <!-- Chat -->
+    <!-- ============== CHAT SECTION ============== -->
 
     <div class="chat-section">
 
@@ -216,6 +331,8 @@
       </div>
 
       <div id="chat-box"></div>
+
+      <!-- ============== FORM ============== -->
 
       <form id="message-form">
 
@@ -226,7 +343,9 @@
           required
         >
 
-        <button type="submit">Send</button>
+        <button type="submit">
+          Send
+        </button>
 
       </form>
 
@@ -234,62 +353,101 @@
 
   </div>
 
+  <!-- ================= SOCKET ================= -->
+
   <script src="/socket.io/socket.io.js"></script>
 
   <script>
+
     const socket = io();
 
     const chat = document.getElementById('chat-box');
-    const messageForm = document.getElementById('message-form');
-    const userList = document.getElementById('users');
-    const messageInput = document.getElementById('message-input');
 
-    const username = prompt('Enter your username');
+    const messageForm =
+    document.getElementById('message-form');
+
+    const userList =
+    document.getElementById('users');
+
+    const messageInput =
+    document.getElementById('message-input');
+
+    const username =
+    prompt('Enter your username');
 
     socket.emit('join', username);
 
+    /* ================= USER JOINED ================= */
+
     socket.on('userJoined', (users)=>{
+
       addMessage(`${users} has joined the chat`);
+
     });
+
+    /* ================= USER LEFT ================= */
 
     socket.on('userLeft', (user)=>{
+
       addMessage(`${user} has left the chat`);
+
     });
 
+    /* ================= SEND MESSAGE ================= */
+
     messageForm.addEventListener('submit', (event)=>{
+
       event.preventDefault();
 
-      const messageInfo = messageInput.value.trim();
+      const messageInfo =
+      messageInput.value.trim();
 
       if(messageInfo){
 
         socket.emit('userChat', {
+
           username,
+
           text : messageInfo
         });
 
       }
 
       messageInput.value = '';
+
     });
+
+    /* ================= ADD MESSAGE ================= */
 
     function addMessage(input){
 
-      const message = document.createElement('div');
+      const message =
+      document.createElement('div');
 
       message.textContent = input;
 
       chat.appendChild(message);
 
-      chat.scrollTop = chat.scrollHeight;
+      chat.scrollTop =
+      chat.scrollHeight;
     }
 
-    socket.on("userList",(users)=>{
-      userList.innerHTML = users.map((user)=> `<li>${user}</li>`).join("")
+    /* ================= USER LIST ================= */
+
+    socket.on('userList',(users)=>{
+
+      userList.innerHTML =
+      users.map((user)=>
+      `<li>${user}</li>`).join("");
+
     });
 
+    /* ================= RECEIVE MESSAGE ================= */
+
     socket.on('userChat', (message)=>{
+
       addMessage(`${message.username}: ${message.text}`);
+
     });
 
   </script>
